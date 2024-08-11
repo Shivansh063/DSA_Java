@@ -1,2 +1,6 @@
 # DSA_Java
-Coding Problems
+LeetCode Questions
+Basic Coding Questions
+Sorting
+Searching
+Array
