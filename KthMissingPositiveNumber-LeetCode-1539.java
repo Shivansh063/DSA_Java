@@ -6,37 +6,22 @@ Problem Description : Given an array arr of positive integers sorted in a strict
 **/
 
 class Solution {
-
     public int findKthPositive(int[] arr, int k) {
+        int missingCount = 0;
+        int current = 1;
+        int index = 0;
 
-        int arraySize = arr.length;
-        int numberOfElements =  arr[arraySize-1] - arraySize;
-        int answer = 0;
-        if(numberOfElements == arr[arraySize-1]){
-            answer = arr[arraySize-1] + k;
-        } 
-        else if(numberOfElements == k){
-            answer = arr[arraySize-1]-1;
-        }
-        else if(numberOfElements < k){
-            answer = arr[arraySize-1] + (k-numberOfElements);
-        }
-        else{
-            int total = arr[0]-1;
-            if(total >= k){
-                answer = k;
+        while (missingCount < k) {
+            if (index < arr.length && arr[index] == current) {
+                index++;
+            } else {
+                missingCount++;
             }
-            else{
-                for(int i=1;i<arraySize;i++){
-                    total = total + (arr[i] - arr[i-1]-1);
-                    if(total >=k){
-                        answer = arr[i];
-                        break;
-                    }
-                }
-                answer = answer - (total-k+1);
+            if (missingCount < k) {
+                current++;
             }
         }
-        return answer;
+
+        return current;
     }
 }
